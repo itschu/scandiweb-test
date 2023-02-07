@@ -8,11 +8,11 @@
         private $details;
 
         public function __construct ($sku, $name, $price, $type, $details){
-            $this->sku = $sku || "";
-            $this->name = $name || "";
-            $this->price = $price || "";
-            $this->type = $type || "";
-            $this->details = $details || "";
+            $this->sku = $sku;
+            $this->name = $name;
+            $this->price = $price;
+            $this->type = $type;
+            $this->details = $details;
         }
 
         public function createProduct(){

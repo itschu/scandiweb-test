@@ -4,8 +4,6 @@
 
         require_once("class-autoload.inc.php");
 
-        print_r($_POST);
-
         $sku = $_POST['sku'];
         $name = $_POST['name'];
         $price = $_POST['price'];

@@ -1,6 +1,12 @@
 <?php
 
-    class Products extends DB{
+    abstract class ProductModel extends DB{
+        abstract protected function getProducts ();
+        abstract protected function addProduct ($sku, $name, $price, $type, $details);
+        abstract protected function checkSku ($sql);
+    }
+
+    class Products extends ProductModel{
 
         protected function getProducts (){
             $sql = "SELECT * FROM  products";

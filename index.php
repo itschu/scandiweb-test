@@ -24,9 +24,9 @@
 			>
 				<h1 class="text-3xl font-semibold">Product List</h1>
 
-				<div>
+				<div class="flex flex-col gap-3 md:flex-row md:gap-5 items-end md:items-center">
 					<a
-						class="btn mr-5 bg-blue-600 border-blue-600 text-white"
+						class="btn bg-blue-600 border-blue-600 text-white"
 						href="./add-product/"
 					>
 						ADD
@@ -37,7 +37,7 @@
 				</div>
 			</header>
 
-			<main class="grid grid-cols-4 gap-10">
+			<main class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
 				<?php
                         foreach ($all as $product) {
                             ?>
@@ -60,11 +60,7 @@
     ?>
 			</main>
 
-			<footer class="py-5 mt-16 border-t-4 border-gray-700">
-				<p class="text-center font-semibold">
-					Scandiweb Test assignment
-				</p>
-			</footer>
+			<?php include "./includes/footer.inc.php"; ?>
 		</form>
 	</body>
 </html>

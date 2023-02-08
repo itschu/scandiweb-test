@@ -15,11 +15,11 @@
 			id="product_form"
 		>
 			<header
-				class="flex justify-between mt-12 pb-5 mb-10 border-b-2 border-gray-700"
+				class="flex justify-between mt-12 pb-5 mb-10 border-b-2 border-gray-700 items-center"
 			>
 				<h1 class="text-3xl font-semibold">Product Add</h1>
 
-				<div>
+				<div class="flex flex-col gap-3 md:flex-row md:gap-5 items-end md:items-center">
 					<input
 						type="submit"
 						name="save"
@@ -28,7 +28,7 @@
 						value="Save"
 					/>
 					<a
-						class="capitalize btn mr-5 bg-red-600 border-red-600 text-white"
+						class="capitalize btn bg-red-600 border-red-600 text-white"
 						href="../"
 					>
 						CANCEL
@@ -96,11 +96,7 @@
 				<div id="switcher"></div>
 			</main>
 
-			<footer class="py-5 mt-16 border-t-2 border-gray-700">
-				<p class="text-center font-semibold">
-					Scandiweb Test assignment
-				</p>
-			</footer>
+			<?php include "../includes/footer.inc.php"; ?>
 		</form>
 	</body>
 	<script src="../js/app.js"></script>

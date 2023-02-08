@@ -2,18 +2,17 @@
 
     spl_autoload_register('autoLoader');
 
-    function autoLoader ($className){
+    function autoLoader($className)
+    {
         $url = $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 
-        $className = strtolower( $className );
+        $className = strtolower($className);
 
-        if(strpos($url, "api")){
+        if (strpos($url, "api")) {
             $path = '../../classes/';
-
-        }elseif(strpos($url, "includes")){
+        } elseif (strpos($url, "includes")) {
             $path = '../classes/';
-
-        }else{
+        } else {
             $path = './classes/';
         }
 
@@ -21,7 +20,7 @@
 
         $filename = $path.$className.$extension;
 
-        if(!file_exists($filename)){
+        if (!file_exists($filename)) {
             return false;
         }
 

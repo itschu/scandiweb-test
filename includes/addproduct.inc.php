@@ -1,7 +1,6 @@
 <?php
 
-    if(isset($_POST['sku'])){
-
+    if (isset($_POST['sku'])) {
         require_once("class-autoload.inc.php");
 
         $sku = $_POST['sku'];
@@ -15,16 +14,15 @@
         $length = isset($_POST['length']) ? $_POST['length'] : "";
         $details = "";
 
-        
         $typeController = new Details($size, $weight, $height, $width, $length);
         $capitalizedType = ucfirst($type);
-        $details = $typeController->getDetails(new $capitalizedType);
-        
+        $details = $typeController->getDetails(new $capitalizedType());
+
         $product = new ProductsContrl($sku, $name, $price, $type, $details);
 
         $product->createProduct();
 
         header("location: ../");
-    }else{
+    } else {
         header("location: ../");
     }

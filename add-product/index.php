@@ -21,25 +21,27 @@
 
 				<div>
 					<input
-                        type="submit"
+						type="submit"
 						name="save"
 						class="btn capitalize bg-blue-600 border-blue-600 text-white"
 						id="save"
-                        value="save"
+						value="Save"
 					/>
 					<a
 						class="capitalize btn mr-5 bg-red-600 border-red-600 text-white"
 						href="../"
 					>
-						cancel
+						CANCEL
 					</a>
 				</div>
 			</header>
 
 			<main class="">
-
-                <p id="error" class="mb-5 font-medium text-red-500">
-                   
+				<p id="error" class="mb-5 font-medium text-red-500">
+                    <?php
+                        if(isset($_GET['error']))
+                            echo $_GET['error'];
+                    ?>
                 </p>
 
 				<div class="item">
@@ -67,7 +69,7 @@
 				<div class="item">
 					<label class="label">Price ($)</label>
 					<input
-						type="number"
+						type="text"
 						name="price"
 						id="price"
 						class="input"

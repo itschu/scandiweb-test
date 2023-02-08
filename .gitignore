@@ -2,3 +2,5 @@
 /node_modules
 /.pnp
 .pnp.js
+/vendor
+.php-cs-fixer.cache

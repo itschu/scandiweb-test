@@ -9,7 +9,7 @@
 
     $method = $_SERVER['REQUEST_METHOD'];
 
-    $product = new Products;
+    $product = new Products();
 
     if ($method == 'GET') {
         $sku = $_GET['sku'];

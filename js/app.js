@@ -5,6 +5,11 @@ const save_btn = document.getElementById("save");
 const product_form = document.getElementById("product_form");
 const error = document.getElementById("error");
 
+const setError = (msg) => {
+	save_btn.value = "save";
+	error.innerText = msg;
+};
+
 (() => {
 	const now = performance.now().toString(36) + Math.random().toString(36);
 	sku.value = now;
@@ -13,39 +18,26 @@ const error = document.getElementById("error");
 		e.preventDefault();
 		save_btn.value = "loading...";
 
+		const majorInput = Array.from(
+			document.querySelectorAll(
+				"#size, #weight, #height, #width, #length, #price"
+			)
+		);
+
 		if (sku.value == "") {
-			save_btn.value = "save";
-			return (error.innerText = "SKU value cannot be empty");
+			return setError("SKU value cannot be empty");
 		}
 
-		if (parseInt(document.getElementById("price")?.value) < 0) {
-			save_btn.value = "save";
-			return (error.innerText = "Price cannot be a negative value");
-		}
+		for (let i = 0; i < majorInput.length; i++) {
+			if (parseInt(majorInput[i]?.value) < 0) {
+				return setError(
+					`${majorInput[i].id} cannot be a negative value`
+				);
+			}
 
-		if (parseInt(document.getElementById("size")?.value) < 0) {
-			save_btn.value = "save";
-			return (error.innerText = "size cannot be a negative value");
-		}
-
-		if (parseInt(document.getElementById("weight")?.value) < 0) {
-			save_btn.value = "save";
-			return (error.innerText = "weight cannot be a negative value");
-		}
-
-		if (parseInt(document.getElementById("height")?.value) < 0) {
-			save_btn.value = "save";
-			return (error.innerText = "height cannot be a negative value");
-		}
-
-		if (parseInt(document.getElementById("width")?.value) < 0) {
-			save_btn.value = "save";
-			return (error.innerText = "width cannot be a negative value");
-		}
-
-		if (parseInt(document.getElementById("length")?.value) < 0) {
-			save_btn.value = "save";
-			return (error.innerText = "length cannot be a negative value");
+			if (!/^\d+(.\d+)?$/.test(majorInput[i]?.value)) {
+				return setError(`${majorInput[i].id} can only be numbers`);
+			}
 		}
 
 		const req = await fetch(
@@ -54,8 +46,7 @@ const error = document.getElementById("error");
 		const res = await req.json();
 
 		if (res) {
-			save_btn.value = "save";
-			return (error.innerText = "SKU is not unique");
+			return setError("SKU is not unique");
 		}
 
 		product_form.submit();
@@ -68,7 +59,7 @@ const changeSwitcher = () => {
            <div id="DVD">
                  <div class="item">
                     <label class="label">Size (MB)</label>
-                    <input type="number" name="size" id="size" class="input" required />
+                    <input type="text" name="size" id="size" class="input" required />
                 </div>
                 <p class="desc">*Please provide the product size</p>
            </div>
@@ -78,7 +69,7 @@ const changeSwitcher = () => {
             <div id="Book">
                 <div class="item">
                     <label class="label">Weight (KG)</label>
-                    <input type="number" name="weight" id="weight" class="input" required />
+                    <input type="text" name="weight" id="weight" class="input" required />
                 </div>
                 <p class="desc">*Please provide the product weight</p>
             </div>
@@ -88,19 +79,19 @@ const changeSwitcher = () => {
            <div id="Furniture">
                  <div class="item">
                     <label class="label">Height (CM)</label>
-                    <input type="number" name="height" id="height" class="input" required />
+                    <input type="text" name="height" id="height" class="input" required />
                 </div>
 
                 <div class="item">
                     <label class="label">Width (CM)</label>
-                    <input type="number" name="width" id="width" class="input" required />
+                    <input type="text" name="width" id="width" class="input" required />
                 </div>
 
                 <div class="item">
                     <label class="label">Length (CM)</label>
-                    <input type="number" name="length" id="length" class="input" required />
+                    <input type="text" name="length" id="length" class="input" required />
                 </div>
-                <p class="desc">*Please provide the product dimensions</p>
+                <p class="desc">*Please provide the product dimensions HxWxL</p>
            </div>
         `;
 	}

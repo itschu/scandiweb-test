@@ -4,9 +4,9 @@
 
     $products = new ProductsView();
 
-    $all = $products->showProducts(); 
-    
-?>
+    $all = $products->showProducts();
+
+    ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -29,18 +29,18 @@
 						class="btn mr-5 bg-blue-600 border-blue-600 text-white"
 						href="./add-product/"
 					>
-						add
+						ADD
 					</a>
-					<input type="submit" name="delete" value="mass delete"
-					class="btn bg-red-600 border-red-600 text-white""
+					<input type="submit" name="delete" value="MASS DELETE"
+					class="btn bg-red-600 border-red-600 text-white"
 					id="delete-product-btn" />
 				</div>
 			</header>
 
 			<main class="grid grid-cols-4 gap-10">
 				<?php
-                    foreach($all as $product){
-                ?>
+                        foreach ($all as $product) {
+                            ?>
 				<div
 					class="border-2 border-gray-900 p-8 flex flex-col justify-center items-center relative"
 				>
@@ -56,8 +56,8 @@
 					<p><?php echo $product['details']; ?></p>
 				</div>
 				<?php
-                    }
-                ?>
+                        }
+    ?>
 			</main>
 
 			<footer class="py-5 mt-16 border-t-4 border-gray-700">

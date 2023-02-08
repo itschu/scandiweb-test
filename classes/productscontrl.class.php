@@ -20,9 +20,9 @@
             $result = $this->addProduct($this->si($this->sku), $this->si($this->name), $this->si($this->price), $this->si($this->type), $this->si($this->details));
         }
 
-        public function deleteProduct($input){
+        public function deleteProducts($input){
             foreach($input as $col => $id){
-                $sql = "DELETE FROM products WHERE ";
+                $sql = "UPDATE products set deleted = 'true' WHERE ";
                 
                 if($col !== "delete"){
                     $sql .= "sn='$col' ";
@@ -33,18 +33,23 @@
 
         private function validate(){
             if($this->isEmpty()){
-                header("location: ../product.php?error=emptyfields");
+                header("location: ../add-product/?error=all fir=elds are required.");
+                exit(); return;
+            }
+
+            if($this->checkSku($this->sku)){
+                header("location: ../add-product/?error=the sku is not unique.");
                 exit(); return;
             }
         }
 
         private function isEmpty(){
-            $result = true;
+            $result = false;
+
             if(empty($this->sku) || empty($this->name) ||  empty($this->price) ||  empty($this->type) ||  empty($this->details)){
                 $result = true;
-            }else{
-                $result = false;
             }
+            
             return $result;
         }
 

@@ -9,7 +9,7 @@
     class Products extends ProductModel{
 
         protected function getProducts (){
-            $sql = "SELECT * FROM  products";
+            $sql = "SELECT * FROM  products WHERE deleted = 'false' ";
             $results = $this->connect()->query($sql);
             return $results;
         }
@@ -32,7 +32,7 @@
         }
 
         public function checkSku ($sku){
-            $sql = "SELECT * FROM products WHERE sku = ?";
+            $sql = "SELECT * FROM products WHERE sku = ? AND deleted = 'false' ";
             $stmt = $this->connect()->prepare($sql);
             $stmt->bind_param('s', $sku);
             $stmt->execute();

@@ -6,7 +6,7 @@
 
         $product = new ProductsContrl("", "", "", "", "");
 
-        $product->deleteProduct($_POST);
+        $product->deleteProducts($_POST);
 
         header("location: ../");
 

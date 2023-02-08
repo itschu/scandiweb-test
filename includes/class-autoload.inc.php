@@ -5,6 +5,8 @@
     function autoLoader ($className){
         $url = $_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
 
+        $className = strtolower( $className );
+
         if(strpos($url, "api")){
             $path = '../../classes/';
 

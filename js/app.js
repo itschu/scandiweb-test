@@ -1,6 +1,7 @@
 const container = document.getElementById("switcher");
 const select = document.getElementById("productType");
 const sku = document.getElementById("sku");
+const save_btn = document.getElementById("save");
 const product_form = document.getElementById("product_form");
 const error = document.getElementById("error");
 
@@ -10,32 +11,40 @@ const error = document.getElementById("error");
 
 	product_form.addEventListener("submit", async (e) => {
 		e.preventDefault();
+		save_btn.value = "loading...";
 
 		if (sku.value == "") {
+			save_btn.value = "save";
 			return (error.innerText = "SKU value cannot be empty");
 		}
 
 		if (parseInt(document.getElementById("price")?.value) < 0) {
+			save_btn.value = "save";
 			return (error.innerText = "Price cannot be a negative value");
 		}
 
 		if (parseInt(document.getElementById("size")?.value) < 0) {
+			save_btn.value = "save";
 			return (error.innerText = "size cannot be a negative value");
 		}
 
 		if (parseInt(document.getElementById("weight")?.value) < 0) {
+			save_btn.value = "save";
 			return (error.innerText = "weight cannot be a negative value");
 		}
 
 		if (parseInt(document.getElementById("height")?.value) < 0) {
+			save_btn.value = "save";
 			return (error.innerText = "height cannot be a negative value");
 		}
 
 		if (parseInt(document.getElementById("width")?.value) < 0) {
+			save_btn.value = "save";
 			return (error.innerText = "width cannot be a negative value");
 		}
 
 		if (parseInt(document.getElementById("length")?.value) < 0) {
+			save_btn.value = "save";
 			return (error.innerText = "length cannot be a negative value");
 		}
 
@@ -45,7 +54,8 @@ const error = document.getElementById("error");
 		const res = await req.json();
 
 		if (res) {
-			return;
+			save_btn.value = "save";
+			return (error.innerText = "SKU is not unique");
 		}
 
 		product_form.submit();
